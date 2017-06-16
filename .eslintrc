@@ -3,9 +3,13 @@
     "browser": true
   },
   "extends": "airbnb",
-  "parser": "babel-eslint",
   "rules": {
     "camelcase": 0,
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": [2, { "ignore": [
+      "actions", "components", "constants", "containers", "reducers"
+    ]}],
     "import/prefer-default-export": 0,
     "linebreak-style": 0,
     "no-param-reassign": 0,
@@ -19,5 +23,11 @@
     "react/no-unescaped-entities": 0,
     "react/prop-types": "warn",
     "react/require-default-props": 0
-  }
+  },
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolver": {
+      "babel-module": {}
+    }
+  } 
 }

@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
 
-import Logo from '../../components/Logo';
-import Button from '../../components/Button';
+import * as actions from 'actions';
+import { Button, Logo } from 'components';
 import logoImg from '../../assets/logo.svg';
 
 import {

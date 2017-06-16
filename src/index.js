@@ -4,10 +4,11 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import theme from './theme';
-import reducer from './reducers';
-import App from './containers/App';
-import registerServiceWorker from './registerServiceWorker';
+import reducer from 'reducers';
+import { App } from 'containers';
+
+import theme from './config/theme';
+import registerServiceWorker from './config/registerServiceWorker';
 
 const store = createStore(reducer);
 
