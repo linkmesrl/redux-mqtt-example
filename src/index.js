@@ -1,11 +1,10 @@
-import MQTT from 'async-mqtt';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components';
+import reduxMqttMiddleware from 'redux-mqtt';
 
 import reducer from 'reducers';
 import { App } from 'containers';
@@ -20,21 +19,9 @@ const logger = store => next => (action) => {
   return result;
 };
 
-const mqttPromise = (config) => {
-  // When passing async functions as event listeners, make sure to have a try catch block
-  // client.on('connect', doStuff);
-
-  const client = MQTT.connect(config);
-  return () => next => (action) => {
-    Promise.resolve(client.publish(action.topic, JSON.stringify(action))).then(next(action));
-  };
-};
-
 const store = createStore(reducer, composeWithDevTools(
-  applyMiddleware(logger, mqttPromise('tcp://localhost:3000')),
-  // other store enhancers if any
+  applyMiddleware(logger, reduxMqttMiddleware('tcp://localhost:3000')),
 ));
-
 
 ReactDOM.render(
   <Provider store={store}>
