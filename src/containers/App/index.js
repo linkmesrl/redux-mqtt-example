@@ -2,39 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import * as actions from 'actions';
-import { Button, Logo } from 'components';
+
+import { Button, Device, Logo } from 'components';
 import logoImg from '../../assets/logo.svg';
 
 import {
   ButtonsContainer,
-  CounterContainer,
   Container,
+  DevicesContainer,
   H2,
 } from './styles';
 
-const App = ({ counter, increment, decrement }) => (
+const App = ({ devices, addDevice, saveDevice }) => (
   <Container>
     <Logo src={logoImg} />
     <H2>Redux MQTT Example</H2>
     <ButtonsContainer>
-      <Button type="success" onClick={increment}>Increment</Button>
-      <Button type="danger" onClick={decrement}>Decrement</Button>
+      <Button type="primary" onClick={() => addDevice('gauge')}>Gauge</Button>
+      <Button type="success" onClick={() => addDevice('color_picker')}>Color Picker</Button>
     </ButtonsContainer>
-    <CounterContainer>
-      <span>Counter: {counter}</span>
-    </CounterContainer>
+    <DevicesContainer>
+      {Object.keys(devices).map(key => (
+        <Device
+          key={key}
+          device={devices[key]}
+          saveDevice={saveDevice}
+        />
+      ))}
+    </DevicesContainer>
   </Container>
 );
 
 App.propTypes = {
-  counter: PropTypes.number.isRequired,
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
+  devices: PropTypes.object.isRequired,
+  addDevice: PropTypes.func.isRequired,
+  saveDevice: PropTypes.func.isRequired,
 };
 
 export default connect(
-  state => ({ counter: state.counter.current }),
+  state => ({ devices: state.devices }),
   dispatch => ({ ...bindActionCreators(actions, dispatch) }),
 )(App);

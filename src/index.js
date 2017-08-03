@@ -4,11 +4,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components';
-import reduxMqttMiddleware from 'redux-mqtt';
-
 import reducer from 'reducers';
 import { App } from 'containers';
 
+import reduxMqttMiddleware from './lib/redux-mqtt';
 import theme from './config/theme';
 import registerServiceWorker from './config/registerServiceWorker';
 

@@ -23,3 +23,8 @@ export const ButtonsContainer = styled.div`
 export const CounterContainer = styled.div`
   margin-top: 20px;
 `;
+
+export const DevicesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
