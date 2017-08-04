@@ -1,4 +1,4 @@
-import { ADD_DEVICE, SAVE_DEVICE } from './actions';
+import { ADD_DEVICE, SAVE_DEVICE, DEVICE_DATA } from './actions';
 
 const devices = (state = {}, action) => {
   switch (action.type) {
@@ -9,6 +9,16 @@ const devices = (state = {}, action) => {
           ...action.device,
           data: {
             value: 0,
+          },
+        },
+      };
+    case DEVICE_DATA:
+      return {
+        ...state,
+        [action.device.id]: {
+          ...state[action.device.id],
+          data: {
+            value: action.device.value,
           },
         },
       };

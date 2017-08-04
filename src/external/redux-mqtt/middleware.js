@@ -1,6 +1,6 @@
 import MQTT from 'async-mqtt';
 import { Promise } from 'es6-promise-polyfill';
-import { addDevice } from './actions';
+import { addDevice, onData } from './actions';
 
 const reduxMqttMiddleware = config => ({ dispatch }) => {
   const client = MQTT.connect(config);
@@ -12,6 +12,9 @@ const reduxMqttMiddleware = config => ({ dispatch }) => {
     if (topic === 'registrations') {
       client.subscribe(msgObj.deviceId);
       dispatch(addDevice(msgObj));
+    } else {
+      console.log('message:', message);
+      dispatch(onData(msgObj));
     }
   }));
 
