@@ -1,9 +1,9 @@
 import { createStyleSheet } from 'material-ui/styles';
 
 const styleSheet = createStyleSheet({
-  root: {
-    flexGrow: 1,
-    margin: 30,
+  title: {
+    flex: 1,
+    textAlign: 'left',
   },
 });
 

@@ -1,30 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Gauge from 'react-svg-gauge';
+import { Circular } from 'src/components';
 import { SketchPicker } from 'react-color';
-
-import {
-  DeviceBox,
-} from './styles';
 
 class Device extends React.Component {
   handleDeviceChange = id => (change) => {
     this.props.saveDevice(id, change);
   }
-
   render() {
     const { device } = this.props;
     return (
-      <DeviceBox>
-        {(device.type === 'gauge' &&
-          <Gauge value={40} />) ||
+      <div>
+        {(device.type === 'circular' &&
+          <Circular percent={device.data && device.data.value} />) ||
         (device.type === 'color_picker' &&
           <SketchPicker
-            color={device.data && device.data.hex}
+            color={device.data && device.data.value}
             onChangeComplete={this.handleDeviceChange(device.id)}
           />)}
-      </DeviceBox>
+      </div>
     );
   }
 }

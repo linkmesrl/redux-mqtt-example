@@ -2,44 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from 'actions';
+import * as actions from 'src/actions';
+import { compose } from 'recompose';
 
-import { Button, Device, Logo } from 'components';
-import logoImg from '../../assets/logo.svg';
+import Grid from 'material-ui/Grid';
+import { CardDevice, TopBar } from 'src/components';
 
-import {
-  ButtonsContainer,
-  Container,
-  DevicesContainer,
-  H2,
-} from './styles';
+import { withStyles } from 'material-ui/styles';
+import styleSheet from './styles';
 
-const App = ({ devices, saveDevice }) => (
-  <Container>
-    <Logo src={logoImg} />
-    <H2>Redux MQTT Example</H2>
-    <ButtonsContainer>
-      <Button type="primary" onClick={() => console.log('gauge')}>Gauge</Button>
-      <Button type="success" onClick={() => console.log('color_picker')}>Color Picker</Button>
-    </ButtonsContainer>
-    <DevicesContainer>
-      {Object.keys(devices).map(key => (
-        <Device
-          key={key}
-          device={devices[key]}
-          saveDevice={saveDevice}
-        />
-      ))}
-    </DevicesContainer>
-  </Container>
+const App = ({ classes, devices, saveDevice }) => (
+  <div>
+    <TopBar title="Redux MQTT Example" />
+    <div className={classes.root}>
+      <Grid container gutter={24}>
+        {Object.keys(devices).map(key => (
+          <Grid key={key} item xs={12} sm={4} md={3}>
+            <CardDevice
+              device={devices[key]}
+              saveDevice={saveDevice}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </div>
+  </div>
 );
 
 App.propTypes = {
+  classes: PropTypes.object.isRequired,
   devices: PropTypes.object.isRequired,
   saveDevice: PropTypes.func.isRequired,
 };
 
-export default connect(
-  state => ({ devices: state.devices }),
-  dispatch => ({ ...bindActionCreators(actions, dispatch) }),
-)(App);
+const enhance = compose(
+  connect(
+    state => ({ devices: state.devices }),
+    dispatch => ({ ...bindActionCreators(actions, dispatch) }),
+  ),
+  withStyles(styleSheet),
+);
+
+export default enhance(App);

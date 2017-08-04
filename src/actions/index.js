@@ -4,6 +4,8 @@ export const saveDevice = (id, data) => ({
   type: SAVE_DEVICE,
   device: {
     id,
-    data,
+    data: {
+      value: data.hex,
+    },
   },
 });

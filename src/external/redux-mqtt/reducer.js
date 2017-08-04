@@ -5,7 +5,12 @@ const devices = (state = {}, action) => {
     case ADD_DEVICE:
       return {
         ...state,
-        [action.device.id]: action.device,
+        [action.device.id]: {
+          ...action.device,
+          data: {
+            value: 0,
+          },
+        },
       };
     case SAVE_DEVICE:
       return {

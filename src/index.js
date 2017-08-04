@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { ThemeProvider } from 'styled-components';
-import reducer from 'reducers';
-import { App } from 'containers';
+import reducer from 'src/reducers';
+import { App } from 'src/containers';
+import './styles.css';
 
 import { reduxMqttMiddleware } from './external/redux-mqtt';
-import theme from './config/theme';
 import registerServiceWorker from './config/registerServiceWorker';
 
 const logger = store => next => (action) => {
@@ -19,14 +18,15 @@ const logger = store => next => (action) => {
 };
 
 const store = createStore(reducer, composeWithDevTools(
-  applyMiddleware(logger, reduxMqttMiddleware('tcp://localhost:3000')),
+  applyMiddleware(
+    logger,
+    reduxMqttMiddleware('ws://broker.mqttdashboard.com:8000/mqtt'),
+  ),
 ));
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <App />
   </Provider>,
   document.getElementById('root'),
 );
