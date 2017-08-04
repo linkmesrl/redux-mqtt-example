@@ -14,13 +14,13 @@ import {
   H2,
 } from './styles';
 
-const App = ({ devices, addDevice, saveDevice }) => (
+const App = ({ devices, saveDevice }) => (
   <Container>
     <Logo src={logoImg} />
     <H2>Redux MQTT Example</H2>
     <ButtonsContainer>
-      <Button type="primary" onClick={() => addDevice('gauge')}>Gauge</Button>
-      <Button type="success" onClick={() => addDevice('color_picker')}>Color Picker</Button>
+      <Button type="primary" onClick={() => console.log('gauge')}>Gauge</Button>
+      <Button type="success" onClick={() => console.log('color_picker')}>Color Picker</Button>
     </ButtonsContainer>
     <DevicesContainer>
       {Object.keys(devices).map(key => (
@@ -36,7 +36,6 @@ const App = ({ devices, addDevice, saveDevice }) => (
 
 App.propTypes = {
   devices: PropTypes.object.isRequired,
-  addDevice: PropTypes.func.isRequired,
   saveDevice: PropTypes.func.isRequired,
 };
 

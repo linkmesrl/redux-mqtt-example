@@ -1,4 +1,4 @@
-import { ADD_DEVICE, SAVE_DEVICE } from '../constants';
+import { ADD_DEVICE, SAVE_DEVICE } from './actions';
 
 const devices = (state = {}, action) => {
   switch (action.type) {

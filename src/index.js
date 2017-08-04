@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import reducer from 'reducers';
 import { App } from 'containers';
 
-import reduxMqttMiddleware from './external/redux-mqtt';
+import { reduxMqttMiddleware } from './external/redux-mqtt';
 import theme from './config/theme';
 import registerServiceWorker from './config/registerServiceWorker';
 

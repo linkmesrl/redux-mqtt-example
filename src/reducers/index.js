@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
-import devices from './devices';
+import { reduxMqttReducer } from '../external/redux-mqtt';
 
 const rootReducer = combineReducers({
-  counter,
-  devices,
+  devices: reduxMqttReducer,
 });
 
 export default rootReducer;

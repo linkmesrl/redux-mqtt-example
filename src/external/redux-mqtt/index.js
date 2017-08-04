@@ -1,1 +1,2 @@
-export { reduxMqttMiddleware as default } from './middleware';
+export { default as reduxMqttMiddleware } from './middleware';
+export { default as reduxMqttReducer } from './reducer';
