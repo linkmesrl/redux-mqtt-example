@@ -1,0 +1,24 @@
+{
+  "name": "redux-mqtt",
+  "version": "0.0.3",
+  "description": "Redux MQTT middleware",
+  "repository": "linkmesrl/redux-mqtt",
+  "authors": [
+    "Lorenzo Boasso",
+    "Paolo Rovella"
+  ],
+  "license": "MIT",
+  "tags": [
+    "redux",
+    "mqtt"
+  ],
+  "keywords": [
+    "react",
+    "redux",
+    "mqtt"
+  ],
+  "dependencies": {
+    "async-mqtt": "^1.0.1",
+    "es6-promise-polyfill": "^1.2.0"
+  }
+}
