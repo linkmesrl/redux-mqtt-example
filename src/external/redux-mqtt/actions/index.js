@@ -1,6 +1,6 @@
 export const ADD_DEVICE = '/App/ADD_DEVICE';
 export const DEVICE_DATA = '/App/DEVICE_DATA';
-export const SAVE_DEVICE = '/App/SAVE_DEVICE';
+export const REMOVE_DEVICE = '/App/REMOVE_DEVICE';
 
 export const addDevice = deviceParams => ({
   type: ADD_DEVICE,
@@ -13,15 +13,14 @@ export const addDevice = deviceParams => ({
 export const onData = deviceParams => ({
   type: DEVICE_DATA,
   device: {
-    value: deviceParams.value,
     id: deviceParams.deviceId,
+    value: deviceParams.value,
   },
 });
 
-export const saveDevice = (id, data) => ({
-  type: SAVE_DEVICE,
+export const removeDevice = deviceParams => ({
+  type: REMOVE_DEVICE,
   device: {
-    id,
-    data,
+    id: deviceParams.deviceId,
   },
 });

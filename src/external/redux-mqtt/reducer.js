@@ -1,4 +1,4 @@
-import { ADD_DEVICE, SAVE_DEVICE, DEVICE_DATA } from './actions';
+import { ADD_DEVICE, REMOVE_DEVICE, DEVICE_DATA } from './actions';
 
 const devices = (state = {}, action) => {
   switch (action.type) {
@@ -22,14 +22,13 @@ const devices = (state = {}, action) => {
           },
         },
       };
-    case SAVE_DEVICE:
-      return {
-        ...state,
-        [action.device.id]: {
-          ...state[action.device.id],
-          data: action.device.data,
-        },
-      };
+    case REMOVE_DEVICE:
+      return Object.keys(state)
+        .filter(key => key !== action.device.id)
+        .reduce((result, current) => {
+          result[current] = state[current];
+          return result;
+        }, {});
     default:
       return state;
   }
